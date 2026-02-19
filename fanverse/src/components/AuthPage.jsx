@@ -13,7 +13,7 @@ export default function AuthPage() {
           <div className="col-12 col-lg-6 d-flex justify-content-center">
             <div className="custom-card text-center">
               <div className="logo">
-                <p>logo</p>
+                <p>logócska</p>
                 <h1>
                   fanverse <br />
                   <span>central</span>
