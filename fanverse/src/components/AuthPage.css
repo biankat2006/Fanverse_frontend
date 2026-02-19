@@ -1,0 +1,84 @@
+/* 🔥 EZ JAVÍTJA A SZÜRKE OLDALT */
+html, body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* TELJES KÉPERNYŐS HÁTTÉR */
+.auth-container {
+    position: fixed;   /* fontos */
+    inset: 0;          /* top:0 right:0 bottom:0 left:0 */
+    width: 100vw;
+    height: 100vh;
+
+    background: url("../photos/background.jpg") no-repeat center center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BLUR + LILA OVERLAY */
+.overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    background: rgba(40, 0, 60, 0.65);
+}
+
+/* CONTENT A BLUR FELETT */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+/* KÁRTYA */
+.custom-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 25px;
+
+    background: rgba(75, 42, 99, 0.85);
+    backdrop-filter: blur(20px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+/* INPUT */
+.custom-card input {
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #ddd;
+    font-style: italic;
+}
+
+/* BUTTON */
+.primary-btn {
+    margin-top: 20px;
+    padding: 10px 40px;
+    border-radius: 20px;
+    border: none;
+    background: #ddd;
+    color: #ff2d6f;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+    transform: scale(1.05);
+}
+
+.logo span {
+    color: #ff2d6f;
+}
