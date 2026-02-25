@@ -36,7 +36,9 @@ export default function Register() {
                 <Input label='Username' type='text' value={username} setValue={setUsername} placeholder='John Doe'/>
                 <Input label='Password' type='password' value={psw} setValue={setPsw} placeholder='******'/>
                 <Input label='Password again' type='password' value={psw2} setValue={setPsw2} placeholder='******'/>
-                <button className="primary-btn">Register</button>
+                <div className="text-center mt-3">
+                  <Gomb szin = 'btn btn-dark px-4' onClick={onReg} text='Regisztráció'/>
+                </div>
               </div>
             </div>
           </div>
