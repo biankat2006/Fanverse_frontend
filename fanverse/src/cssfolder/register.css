@@ -1,0 +1,50 @@
+.full {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    background-image: url('../photos/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.custom-input::placeholder {
+    color: #FF305D;
+    font-weight: bold;
+    opacity: 1;
+
+}
+
+
+
+.phone2 {
+    height: 450px !important;
+}
+
+label {
+    color: white;
+    opacity: 1;
+}
+
+@media screen and (max-width: 800px) {
+
+    .image {
+        width: 180px;
+    }
+
+    .regLogin {
+        width: 300px;
+        height: 300px;
+    }
+
+    .loginButton {
+        margin: 0px !important;
+    }
+
+    .phone2 {
+        width: 300px;
+        height: 450px !important;
+        margin-top: 20px;
+        padding: 0px !important;
+    }
+}
