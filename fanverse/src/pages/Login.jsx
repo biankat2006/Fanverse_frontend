@@ -62,7 +62,7 @@ export default function Login() {
                             <div className="col-12 col-md-5 justify-content-center rounded-5 p-3 regLogin" style={{ backgroundColor: '#452458' }}>
                                 <div className="custom-card text-center justify-content-center align-items-center">
                                     <div className="logo">
-                                        <Images src={logo} altszov="Freddy logo" style={{}} />
+                                        <Images Class={"image"} src={logo} altszov="Freddy logo" style={{}} />
                                         <h1>
                                             <span style={{ color: 'white' }}>Fanverse</span>
                                             <br />

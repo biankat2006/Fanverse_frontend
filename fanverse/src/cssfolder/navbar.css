@@ -1,0 +1,48 @@
+.logo{
+    width: 130px;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+}
+
+.search-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.szin{
+    color:white;
+    font-size: 40px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.szin2{
+    color: #FF305D;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.kereso{
+    justify-content: center;
+    margin-right: 0px;
+    width: 350px;
+    height: 40px;
+    
+}
+
+.sb{
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+}

@@ -1,5 +1,5 @@
-export default function Images({ src, altszov }){
+export default function Images({ Class,src, altszov }){
     return(
-        <img className="image" src={src} alt={altszov}/>
+        <img className={Class} src={src} alt={altszov}/>
     )
 }
