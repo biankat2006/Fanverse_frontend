@@ -35,9 +35,10 @@ export default function Register() {
     try {
       const data = await register(username, psw, email)
       if (data.error) {
-        alert(data.error)
+        return alert(data.error)
       }
       setUzenet(data.message)
+      setTimeout(()=>navigate('/Login'),600)
 
     } catch (err) {
       alert('Nem sikerült kapcsolódni a backendhez.')
@@ -54,10 +55,10 @@ export default function Register() {
               {/* bejelentkezés */}
               <div className="col-12 col-md-5 justify-content-center rounded-5 p-3 regLogin" style={{ backgroundColor: '#452458' }}>
                 <div className="custom-card text-center justify-content-center align-items-center">
-                  <div className="logo">
+                  <div className="">
                     <Images Class={"image"} src={logo} altszov="Freddy logo" style={{}} />
                     <h1>
-                      <span style={{ color: 'white' }}>Fanverse</span>
+                      <span style={{ color: 'white'}}>Fanverse</span>
                       <br />
                       <span style={{ color: '#FF305D' }}>Central</span>
                     </h1>

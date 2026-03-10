@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://127.0.0.1:4000/users'
+const BACKEND_URL = '/users'
 
 export async function register(username, psw,email ) {
     const res = await fetch(`${BACKEND_URL}/register`, {
@@ -6,7 +6,8 @@ export async function register(username, psw,email ) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, psw,email })
+        body: JSON.stringify({ username, psw,email }),
+        
     })
     //console.log(res)
 
@@ -25,7 +26,8 @@ export async function login( email, psw) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, psw }) 
+        body: JSON.stringify({ email, psw }), 
+       
     })
     //console.log(res)
 
@@ -36,4 +38,28 @@ export async function login( email, psw) {
         return data
     }
     return data
+}
+
+export async function whoami(){
+    const res = await fetch(`${BACKEND_URL}/whoami`,{
+        method:'GET',
+        credentials:'include'
+    })
+    if(!res.ok){
+        const data = await res.json()
+        return {error:data?.error}
+    }
+    return await res.json()
+}
+
+export async function logout(){
+    const res = await fetch(`${BACKEND_URL}/logout`,{
+        method : 'POST',
+        credentials :'include'
+    })
+    if(!res.ok){
+        const data = await res.json()
+        return {error:data?.error}
+    }
+    return await res.json()
 }

@@ -20,15 +20,15 @@
 
 .szin{
     color:white;
-    font-size: 40px;
+    margin: none;
     font-weight: bold;
-    margin-right: 10px;
+
 }
 
 .szin2{
     color: #FF305D;
-    font-size: 40px;
     font-weight: bold;
+    margin: none;
 }
 
 .kereso{

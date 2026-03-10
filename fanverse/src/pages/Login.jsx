@@ -29,9 +29,10 @@ export default function Login() {
         try {
             const data = await login(email, psw)
             if (data.error) {
-                alert(data.error)
+                return alert(data.error)
             }
             setUzenet(data.message)
+            setTimeout(()=>navigate('/'),600)
 
         } catch (err) {
             alert('Nem sikerült kapcsolódni a backendhez.')
@@ -61,8 +62,8 @@ export default function Login() {
                             {/* regisztráció */}
                             <div className="col-12 col-md-5 justify-content-center rounded-5 p-3 regLogin" style={{ backgroundColor: '#452458' }}>
                                 <div className="custom-card text-center justify-content-center align-items-center">
-                                    <div className="logo">
-                                        <Images Class={"image"} src={logo} altszov="Freddy logo" style={{}} />
+                                    <div className="">
+                                        <Images Class={"image"} src={logo} altszov="Freddy logo"   />
                                         <h1>
                                             <span style={{ color: 'white' }}>Fanverse</span>
                                             <br />
@@ -72,6 +73,8 @@ export default function Login() {
                                     <div className="text-center mt-3">
                                         <Button onClick={() => navigate('/Register')} szin='btn btn-light px-4 mt-4 regButton' text='Regisztráció' />
                                     </div>
+
+                                    
                                 </div>
                             </div>
                         </div>
