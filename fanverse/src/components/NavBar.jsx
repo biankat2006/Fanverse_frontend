@@ -1,5 +1,4 @@
 import logo from "../photos/logo.png"
-import pfp from "../photos/pfp.jpg"
 import "../cssfolder/navbar.css"
 import "bootstrap/dist/js/bootstrap"
 import { Link, useNavigate } from "react-router-dom";
