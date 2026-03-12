@@ -1,0 +1,56 @@
+.full {
+    display: flex;
+    min-height: 100dvh;
+    align-items: center;
+    background-image: url('../photos/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.custom-input::placeholder {
+    color: #FF305D;
+    font-weight: bold;
+    opacity: 1;
+
+}
+
+
+
+.phone2 {
+    height: 450px ;
+}
+
+label {
+    color: white;
+    opacity: 1;
+}
+
+@media screen and (max-width: 800px) {
+
+    .image {
+        width: 180px;
+    }
+
+    .regLogin {
+        width: 300px;
+        height: 300px !important;
+    }
+
+    .loginButton {
+        margin: 0px !important;
+    }
+
+     .phone2 {
+       padding: 0px !important;
+       margin-top: 20px;
+       /* width: 300px !important; */
+       max-width: 300px !important;
+       width: 100% !important;
+        height: 0px !important;
+       
+        
+    } 
+
+    
+}

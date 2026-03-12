@@ -1,0 +1,58 @@
+.loginPosition {
+    align-items: center;
+    margin-top: 300px;
+}
+
+.loginButton {
+    margin-top: 85px;
+}
+
+.posi {
+    margin-top: 100px;
+}
+
+.pd {
+    margin-bottom: 25px;
+}
+
+@media screen and (max-width: 800px) {
+    .image {
+        width: 180px;
+    }
+
+    .regLogin {
+        width: 300px;
+        height: 300px;
+    }
+
+    .regButton {
+        margin: 0px !important;
+    }
+
+    .phone2 {
+        width: 300px;
+        height: 300px !important;
+        margin-top: none !important;
+        padding-top: 0px !important;
+        margin-bottom: 30px;
+        padding: none !important;
+    }
+
+    .loginButton {
+        padding: none !important;
+    }
+
+    .loginButton {
+        margin-top: 0px !important;
+
+    }
+
+    .posi {
+        margin-top: 0px !important;
+    }
+
+
+    .pd {
+        margin-bottom: 0px !important;
+    }
+}
