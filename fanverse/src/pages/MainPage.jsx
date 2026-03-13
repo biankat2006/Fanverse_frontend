@@ -7,7 +7,6 @@ import Navbar from "../components/NavBar";
 import GameCard from "../components/GameCard";
 import Button from "../components/Button";
 import { logout, whoami } from "../api";
-import Pages from "../components/Pages";
 
 export default function MainPage() {
     const [user, setUser] = useState(null)
@@ -49,7 +48,7 @@ export default function MainPage() {
                     </div>
                     <div className="rounded-5 p-5 row gy-3">
                         <GameCard title="The Return to the Bloody Nights (Classic)" creator="Kazovsky" />
-                        <GameCard title="" creator="" />
+                        <GameCard title="The Return to the Bloody Nights (Classic)" creator="Kazovsky" />
                         <GameCard />
                         <GameCard />
                         <GameCard />
@@ -57,7 +56,10 @@ export default function MainPage() {
                         <GameCard />
                     </div>
                     <div className="row">
-                        <Pages number='1' color='danger'/>
+                        <Button />
+                        <Button />
+                        <Button />
+                        <Button />
                     </div>
                 </div>
             </div>
