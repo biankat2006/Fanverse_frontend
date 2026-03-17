@@ -1,0 +1,9 @@
+.fullMain{
+    display: flex;
+    min-height: 500dvh;
+    align-items: center;
+}
+
+.ps{
+    width: 50px;
+}

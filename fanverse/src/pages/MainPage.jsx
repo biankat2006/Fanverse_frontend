@@ -1,53 +1,66 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate, } from 'react-router-dom'
-
-// import { mainPage } from "../api";
+import "../cssfolder/mainPage.css"
 
 import Navbar from "../components/NavBar";
-import Images from "../components/Images";
+import GameCard from "../components/GameCard";
+import Button from "../components/Button";
 import { logout, whoami } from "../api";
 
-
 export default function MainPage() {
-    const [user , setUser] = useState(null)
-    const [errorUser , setErrorUser] = useState('')
+    const [user, setUser] = useState(null)
+    const [errorUser, setErrorUser] = useState('')
     const navigate = useNavigate()
 
-
-
-useEffect(()=>{
-    async function load(){
-        const data = await whoami()
-        if(data.error){
-            return setErrorUser(data.error)
+    useEffect(() => {
+        async function load() {
+            const data = await whoami()
+            if (data.error) {
+                return setErrorUser(data.error)
+            }
+            return setUser(data)
         }
-        return setUser(data)
-    }
-    load()
-},[])
+        load()
+    }, [])
 
-    async function onLogout(){
+    async function onLogout() {
         const data = await logout()
-        if(data.error){
+        if (data.error) {
             return setErrorUser(data.error)
         }
         setUser(null)
         navigate('/')
-    } 
-
-
+    }
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#452458' }}>
             <div>
-                <Navbar user={user} onLogout={onLogout}/>
-                {errorUser &&  <div className="alert alert-danger text-center my-2">{errorUser}</div>}
+                <Navbar user={user} onLogout={onLogout} />
+                {/* {errorUser && <div className="alert alert-danger text-center my-2">{errorUser}</div>} */}
             </div>
-            <div className="" style={{height: 2000,backgroundColor: '#452458'}}>
-                
-                <div className="rounded-5 mx-5" style={{backgroundColor: '#652f80', height:200}}>
 
+            <div className="container" style={{ height: 2000, backgroundColor: '#452458' }}>
+                <div className="container rounded-5 p-5" style={{ backgroundColor: '#652f80', height: '95%' }}>
+                    <div className="" style={{ backgroundColor: '#652f80' }}>
+                        <Button text="all" szin="btn btn-danger px-4" />
+                        <Button text="most liked" szin="btn btn-dark px-4" />
+                    </div>
+                    <div className="rounded-5 p-5 row gy-3">
+                        <GameCard title="The Return to the Bloody Nights (Classic)" creator="Kazovsky" />
+                        <GameCard title="The Return to the Bloody Nights (Classic)" creator="Kazovsky" />
+                        <GameCard />
+                        <GameCard />
+                        <GameCard />
+                        <GameCard />
+                        <GameCard />
+                    </div>
+                    <div className="row">
+                        <Button />
+                        <Button />
+                        <Button />
+                        <Button />
+                    </div>
                 </div>
             </div>
         </div>

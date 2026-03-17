@@ -1,5 +1,4 @@
 import logo from "../photos/logo.png"
-import pfp from "../photos/pfp.jpg"
 import "../cssfolder/navbar.css"
 import "bootstrap/dist/js/bootstrap"
 import { Link, useNavigate } from "react-router-dom";
@@ -29,7 +28,9 @@ export default function Navbar({ user, onLogout }) {
             <div className="container-fluid">
 
                 {/* LOGO */}
-                <Images Class="mt-2" src={logo} altszov="LOGO" height={70} />
+                <button onClick={() => navigate('/')} style={{backgroundColor:'#452458', border:'none'}}>
+                    <Images Class="mt-2" src={logo} altszov="LOGO" height={70} />
+                </button>
 
                 {/* HAMBURGER */}
                 <button
