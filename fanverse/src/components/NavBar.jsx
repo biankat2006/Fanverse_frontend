@@ -34,10 +34,11 @@ export default function Navbar({ user, onLogout }) {
 
                 {/* HAMBURGER */}
                 <button
-                    className="navbar-toggler"
+                    className="navbar-toggler bg-danger"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarContent"
+                    
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>

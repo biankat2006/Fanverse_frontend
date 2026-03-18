@@ -11,8 +11,15 @@ import { logout, whoami, getAllGames } from "../api";
 export default function MainPage() {
     const [user, setUser] = useState(null)
     const [errorUser, setErrorUser] = useState('')
-    const [games , setGames] = useState([])
+    const [games, setGames] = useState([])
     const navigate = useNavigate()
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const gamesPerPage = 15;
+    const indexOfLastGame = currentPage * gamesPerPage;
+    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+    const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
 
     useEffect(() => {
         async function load() {
@@ -55,35 +62,49 @@ export default function MainPage() {
                 {/* {errorUser && <div className="alert alert-danger text-center my-2">{errorUser}</div>} */}
             </div>
 
-            <div className="container" style={{ height: 2000, backgroundColor: '#452458' }}>
+            <div className="container" style={{ height: 2050, backgroundColor: '#452458' }}>
                 <div className="container rounded-5 p-5" style={{ backgroundColor: '#652f80', height: '95%' }}>
                     <div className="" style={{ backgroundColor: '#652f80' }}>
                         <Button text="all" szin="btn btn-danger px-4" />
                         <Button text="most liked" szin="btn btn-dark px-4" />
                     </div>
+
                     <div className="rounded-5 p-5 row gy-3">
-                        {games.length > 0 ? (
-                            games.map((game) => (
+                        {currentGames.length > 0 ? (
+                            currentGames.map((game) => (
                                 <GameCard
                                     key={game.id || game.title}
                                     title={game.title}
                                     creator={game.creator_name}
                                     banner_pic={game.banner_pic}
                                     creator_pfp={game.creator_pfp}
+                                    onClick={() => navigate(`/game/${game.id}`)}
                                 />
                             ))
                         ) : (
                             <p style={{ color: "white" }}>No games found.</p>
                         )}
-                        <div className="row">
-                            <Button />
-                            <Button />
-                            <Button />
-                            <Button />
-                        </div>
+
+                        <nav className="mt-4">
+                            <ul className="pagination justify-content-center">
+                                {[...Array(Math.ceil(games.length / gamesPerPage))].map((_, index) => (
+                                    <li
+                                        key={index}
+                                        className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
+                                    >
+                                        <button
+                                            className="page-link"
+                                            onClick={() => setCurrentPage(index + 1)}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     )
 }
