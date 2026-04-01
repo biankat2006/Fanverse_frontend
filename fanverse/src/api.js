@@ -99,3 +99,28 @@ export async function getAllUsers(){
     }
     return await res.json()
 }
+
+export async function getGames(){
+    const res = await fetch(`${BACKEND_URL}/admin/games`,{
+        method: 'GET',
+        credentials: 'include'
+    })
+
+    if(!res.ok){
+        const data = await res.json()
+        return {error:data?.error}
+    }
+    return await res.json()
+}
+
+export async function getOneGame(game_id){
+    const res = await fetch(`${MAIN_BACKEND_URL}/oneGame/${game_id}`,{
+        method:'GET',
+        credentials: 'include'
+    })
+    if(!res.ok){
+        const data = await res.json()
+        return {error:data?.error}
+    }
+    return await res.json()
+}

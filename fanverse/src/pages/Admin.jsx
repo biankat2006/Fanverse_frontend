@@ -7,16 +7,19 @@ import Table from "../components/Table";
 import Navbar from "../components/NavBar";
 import Button from "../components/Button";
 
+import "../cssfolder/admin.css"
 
-import { getAllUsers } from "../api";
+import { getAllUsers , getAllGames } from "../api";
 
 export default function Admin() {
     const { user, loading, onLogout } = useAuth()
 
     const [allUsers, setAllUser] = useState([])
     const [errorAllUsers, setErrorAllUsers] = useState('')
+    const [allGames, setAllGames] = useState([])
+    const [errorAllGames, setErrorAllGames] = useState('')
 
-   
+
 
     useEffect(() => {
         async function loadUsers() {
@@ -26,12 +29,28 @@ export default function Admin() {
             if (!data.error) {
                 return setAllUser(data)
             }
-            
+
             return setErrorAllUsers(data.error)
-            
+
         }
         loadUsers()
     }, [user])
+
+    useEffect(() => {
+        async function loadGames() {
+            if (user?.role !== 'admin') return
+            const data = await getAllGames()
+
+            if (!data.error) {
+                setAllGames(data)
+            } else {
+                setErrorAllGames(data.error)
+                console.error("Hiba a játékok lekérésekor:", data.error)
+            }
+        }
+        loadGames()
+    }, [user])
+
 
     if (loading) {
         return (
@@ -50,16 +69,27 @@ export default function Admin() {
     if (user.role !== 'admin') {
         return <Navigate to='/' />
     }
+
+    console.log(user);
+    console.log(user?.role);
+
     return (
-        <div className="container py-5">
+        <>
             <Navbar user={user} onLogout={onLogout} />
+            <div className="fill" style={{ backgroundColor: '#452458', }}>
 
-            <h1>Admin panel</h1>
+                <div className="container py-5" >
 
-            <Button szin='btn btn-sm btn-warning' text='Profilok' onClick={() => console.log('')} />
-            <Button szin='btn btn-sm btn-dark' text='Játékok' onClick={() => console.log('')} />
 
-            <Table allUsers={allUsers} />
-        </div>
+                    <h1 className="text-white">Admin panel</h1>
+
+
+
+                    <Table allUsers={allUsers} allGames={allGames} />
+                </div>
+            </div>
+        </>
     )
+
+
 }

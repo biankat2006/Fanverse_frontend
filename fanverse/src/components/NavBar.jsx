@@ -23,7 +23,6 @@ export default function Navbar({ user, onLogout }) {
 
     const isAdmin = user?.role.toLowerCase() === 'admin'
     return (
-
         <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#452458' }}>
             <div className="container-fluid">
 

@@ -6,7 +6,10 @@ import "../cssfolder/mainPage.css"
 import Navbar from "../components/NavBar";
 import GameCard from "../components/GameCard";
 import Button from "../components/Button";
-import { logout, whoami, getAllGames } from "../api";
+import { logout, whoami, getAllGames, getOneGame } from "../api";
+
+
+
 
 export default function MainPage() {
     const [user, setUser] = useState(null)
@@ -15,11 +18,14 @@ export default function MainPage() {
     const navigate = useNavigate()
 
 
+
     const [currentPage, setCurrentPage] = useState(1);
     const gamesPerPage = 15;
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
     const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
+
+
 
     useEffect(() => {
         async function load() {
@@ -39,6 +45,7 @@ export default function MainPage() {
             if (data.error) {
                 console.error("Games fetch error:", data.error)
             } else {
+                console.log("Fetched games:", data);
                 setGames(data)
             }
         }
@@ -72,14 +79,21 @@ export default function MainPage() {
                     <div className="rounded-5 p-5 row gy-3">
                         {currentGames.length > 0 ? (
                             currentGames.map((game) => (
-                                <GameCard
-                                    key={game.id || game.title}
-                                    title={game.title}
-                                    creator={game.creator_name}
-                                    banner_pic={game.banner_pic}
-                                    creator_pfp={game.creator_pfp}
-                                    onClick={() => navigate(`/game/${game.id}`)}
-                                />
+                                <div
+                                    key={game.game_id}
+                                    className="col-md-4" // Vagy amilyen szélesre szeretnéd a kártyát
+                                    onClick={() =>{
+                                        console.log("Navigating to game:", game.game_id);
+                                         navigate(`/game/${game.game_id}`)}} // Itt már látja a 'game' változót!
+                                    style={{ cursor: 'pointer' }} // Hogy látszódjon: ez kattintható
+                                >
+                                    <GameCard
+                                        title={game.title}
+                                        creator={game.creator_name}
+                                        banner_pic={game.banner_pic}
+                                        creator_pfp={game.creator_pfp}
+                                    />
+                                </div>
                             ))
                         ) : (
                             <p style={{ color: "white" }}>No games found.</p>

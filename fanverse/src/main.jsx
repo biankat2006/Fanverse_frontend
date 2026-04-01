@@ -9,19 +9,22 @@ import MainPage from './pages/MainPage'
 import Profile from './pages/Profile'
 import GamePage from './pages/GamePage'
 import Admin from './pages/Admin'
+import { AuthProvider } from './context/AuthContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<MainPage />} />
         <Route path='/profile' element={<Profile />}/>
-        <Route path='/gamePAge' element={<GamePage/>}/>
+        <Route path='/game/:game_id' element={<GamePage/>}/>
         <Route path='/admin' element={<Admin/>}/>
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   </StrictMode>
 )
 

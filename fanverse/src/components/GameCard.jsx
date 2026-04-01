@@ -4,7 +4,7 @@ import Images from "./Images"
 
 export default function GameCard({ title, creator, banner_pic, creator_pfp }) {
     return (
-        <div className="col-lg-4 col-md-6 col-sm-12">
+        <div className="h-100 w-100 border-0 rounded-4 overflow-hidden">
       <div className="card rounded-5" style={{ background: "#452458" }}>
         {/* Banner a szerverről */}
         <Images
