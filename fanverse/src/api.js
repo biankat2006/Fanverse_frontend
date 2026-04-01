@@ -28,6 +28,7 @@ export async function login( email, psw) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, psw }), 
+        credentials: 'include'
        
     })
     //console.log(res)
@@ -84,4 +85,42 @@ export async function getAllGames() {
         console.error("Network or server error:", err);
         return { error: "Network error or server unavailable" };
     }
+}
+
+export async function getAllUsers(){
+    const res = await fetch(`${BACKEND_URL}/admin/users`,{
+        method: 'GET',
+        credentials: 'include'
+    })
+
+    if(!res.ok){
+        const data = await res.json()
+        return {error:data?.error}
+    }
+    return await res.json()
+}
+
+export async function getGames(){
+    const res = await fetch(`${BACKEND_URL}/admin/games`,{
+        method: 'GET',
+        credentials: 'include'
+    })
+
+    if(!res.ok){
+        const data = await res.json()
+        return {error:data?.error}
+    }
+    return await res.json()
+}
+
+export async function getOneGame(game_id){
+    const res = await fetch(`${MAIN_BACKEND_URL}/oneGame/${game_id}`,{
+        method:'GET',
+        credentials: 'include'
+    })
+    if(!res.ok){
+        const data = await res.json()
+        return {error:data?.error}
+    }
+    return await res.json()
 }

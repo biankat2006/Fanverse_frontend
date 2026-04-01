@@ -21,9 +21,8 @@ export default function Navbar({ user, onLogout }) {
     //console.log(isLoggedIn);
 
 
-    const isAdmin = user?.role === 'admin'
+    const isAdmin = user?.role.toLowerCase() === 'admin'
     return (
-
         <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#452458' }}>
             <div className="container-fluid">
 
@@ -34,10 +33,11 @@ export default function Navbar({ user, onLogout }) {
 
                 {/* HAMBURGER */}
                 <button
-                    className="navbar-toggler"
+                    className="navbar-toggler bg-danger"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarContent"
+                    
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>

@@ -4,11 +4,11 @@ import Images from "./Images"
 
 export default function GameCard({ title, creator, banner_pic, creator_pfp }) {
     return (
-        <div className="col-lg-4 col-md-6 col-sm-12">
-      <div className="card" style={{ background: "#452458" }}>
+        <div className="h-100 w-100 border-0 rounded-4 overflow-hidden">
+      <div className="card rounded-5" style={{ background: "#452458" }}>
         {/* Banner a szerverről */}
         <Images
-          Class="card-img-top img img-fluid img-thumbnail"
+          Class="card-img-top img img-fluid img-thumbnail rounded-5"
           src={`http://127.0.0.1:4000/updates/${banner_pic}`}
           altszov="Banner pic"
         />
@@ -21,7 +21,7 @@ export default function GameCard({ title, creator, banner_pic, creator_pfp }) {
             <Images
               src={`http://localhost:4000/creator/${creator_pfp}`}
               altszov="creator pfp"
-              Class="ps me-3"
+              Class="ps me-3 rounded-5"
             />
             <p style={{ color: "white", fontWeight: "bold", marginTop: 15 }}>
               {creator}

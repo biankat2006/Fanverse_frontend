@@ -6,13 +6,26 @@ import "../cssfolder/mainPage.css"
 import Navbar from "../components/NavBar";
 import GameCard from "../components/GameCard";
 import Button from "../components/Button";
-import { logout, whoami, getAllGames } from "../api";
+import { logout, whoami, getAllGames, getOneGame } from "../api";
+
+
+
 
 export default function MainPage() {
     const [user, setUser] = useState(null)
     const [errorUser, setErrorUser] = useState('')
-    const [games , setGames] = useState([])
+    const [games, setGames] = useState([])
     const navigate = useNavigate()
+
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const gamesPerPage = 15;
+    const indexOfLastGame = currentPage * gamesPerPage;
+    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+    const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
+
+
 
     useEffect(() => {
         async function load() {
@@ -32,6 +45,7 @@ export default function MainPage() {
             if (data.error) {
                 console.error("Games fetch error:", data.error)
             } else {
+                console.log("Fetched games:", data);
                 setGames(data)
             }
         }
@@ -55,35 +69,56 @@ export default function MainPage() {
                 {/* {errorUser && <div className="alert alert-danger text-center my-2">{errorUser}</div>} */}
             </div>
 
-            <div className="container" style={{ height: 2000, backgroundColor: '#452458' }}>
+            <div className="container" style={{ height: 2050, backgroundColor: '#452458' }}>
                 <div className="container rounded-5 p-5" style={{ backgroundColor: '#652f80', height: '95%' }}>
                     <div className="" style={{ backgroundColor: '#652f80' }}>
                         <Button text="all" szin="btn btn-danger px-4" />
                         <Button text="most liked" szin="btn btn-dark px-4" />
                     </div>
+
                     <div className="rounded-5 p-5 row gy-3">
-                        {games.length > 0 ? (
-                            games.map((game) => (
-                                <GameCard
-                                    key={game.id || game.title}
-                                    title={game.title}
-                                    creator={game.creator_name}
-                                    banner_pic={game.banner_pic}
-                                    creator_pfp={game.creator_pfp}
-                                />
+                        {currentGames.length > 0 ? (
+                            currentGames.map((game) => (
+                                <div
+                                    key={game.game_id}
+                                    className="col-md-4" // Vagy amilyen szélesre szeretnéd a kártyát
+                                    onClick={() =>{
+                                        console.log("Navigating to game:", game.game_id);
+                                         navigate(`/game/${game.game_id}`)}} // Itt már látja a 'game' változót!
+                                    style={{ cursor: 'pointer' }} // Hogy látszódjon: ez kattintható
+                                >
+                                    <GameCard
+                                        title={game.title}
+                                        creator={game.creator_name}
+                                        banner_pic={game.banner_pic}
+                                        creator_pfp={game.creator_pfp}
+                                    />
+                                </div>
                             ))
                         ) : (
                             <p style={{ color: "white" }}>No games found.</p>
                         )}
-                        <div className="row">
-                            <Button />
-                            <Button />
-                            <Button />
-                            <Button />
-                        </div>
+
+                        <nav className="mt-4">
+                            <ul className="pagination justify-content-center">
+                                {[...Array(Math.ceil(games.length / gamesPerPage))].map((_, index) => (
+                                    <li
+                                        key={index}
+                                        className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
+                                    >
+                                        <button
+                                            className="page-link"
+                                            onClick={() => setCurrentPage(index + 1)}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     )
 }
