@@ -1,54 +1,131 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { Link, useNavigate, } from 'react-router-dom'
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/NavBar";
 import Button from "../components/Button";
-import { logout, whoami } from "../api";
-import Input from "../components/Input"
+import { logout, whoami, editUsername, editProfilePicture } from "../api";
+import Input from "../components/Input";
 import Images from "../components/Images";
-
-import pfp from "../photos/pfp.jpg"
+import pfpDefault from "../photos/pfp.jpg";
 
 export default function Profile() {
-    const [user, setUser] = useState(null)
-    const navigate = useNavigate()
+    const [user, setUser] = useState(null);
+    const [newUsername, setNewUsername] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function loadUser() {
             const data = await whoami();
-            setUser(data);
+            if (data && !data.error) {
+                setUser(data);
+                setNewUsername(data.username || '');
+            } else {
+                // Ha 401 Unauthorized, dobjuk ki a loginra
+                navigate("/login");
+            }
         }
         loadUser();
-    }, []);
+    }, [navigate]);
 
+const handleUpdateUsername = async () => {
+    if (!newUsername) return alert("Adj meg egy nevet!");
+
+    const response = await editUsername(newUsername);
+
+    if (response.error) {
+        alert("Hiba: " + response.error);
+    } else {
+        alert("Név frissítve!");
+        // Ne csak a lokális state frissüljön, hanem újrahívjuk a whoami-t
+        const updatedUser = await whoami();
+        if (!updatedUser.error) setUser(updatedUser);
+    }
+};
+
+    const handleUploadPfp = async () => {
+        if (!selectedFile) return alert("Válassz ki egy képet!");
+
+        const formData = new FormData();
+        formData.append('pfp', selectedFile);
+
+        const response = await editProfilePicture(user.user_id, formData);
+
+        if (response.error) {
+            alert("Hiba: " + response.error);
+        } else {
+            alert("Profilkép frissítve!");
+
+            // A backendtől kapott elérési út (pfp kulcs)
+            const newPath = response.pfp || response.newImageUrl || response.path;
+
+            if (newPath) {
+                setUser({ ...user, pfp: newPath });
+            }
+
+            // Memória felszabadítása az ideiglenes URL-nek
+            URL.revokeObjectURL(selectedFile);
+            setSelectedFile(null);
+        }
+    };
     const onLogout = async () => {
         await logout();
         navigate("/login");
     };
 
+
+    console.log("USER:", user);
+    console.log("PFP:", user?.pfp);
     return (
-        <div className="" style={{ backgroundColor: '#452458', minHeight: "100vh" }}>
-            <div>
-                <Navbar user={user} onLogout={onLogout} />
-            </div>
-            <div className="container d-flex justify-content-center align-items-center" style={{ backgroundColor: '#452458', minHeight: "80vh" }}>
-                <div className="text-center" style={{ width: 450 }} >
-                    <div /*className="d-flex justify-content-center align-items-center"*/ style={{ position: "relative", display: "inline-block" }}>
-                        <Images Class={"image rounded-circle mx-auto d-block"} src={pfp} altszov="Profile Picture" height={200} />
-                        <Button szin="btn btn-danger rounded-circle" style={{
-                            position: "absolute",
-                            bottom: 10,
-                            right: 10,
-                            width: 40,
-                            height: 40
-                        }} text='✏️' />
+        <div style={{ backgroundColor: '#452458', minHeight: "100vh" }}>
+            <Navbar user={user} onLogout={onLogout} />
+            <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
+                <div className="text-center" style={{ width: 450 }}>
+
+                    <div style={{ position: "relative", display: "inline-block" }}>
+                        <Images
+                            Class={"image rounded-circle mx-auto d-block"}
+                            src={
+                                selectedFile
+                                    ? URL.createObjectURL(selectedFile)
+                                    : (user?.pfp && user.pfp !== "nincs"
+                                        ? `http://localhost:4000/user_pfp/${user.pfp}`
+                                        : pfpDefault)
+                            }
+                            altszov="Profile Picture"
+                            height={200}
+                            width={200}
+                            style={{ objectFit: 'cover' }}
+                        />
+                        <input
+                            type="file"
+                            id="pfpInput"
+                            style={{ display: 'none' }}
+                            onChange={(e) => setSelectedFile(e.target.files[0])}
+                            accept="image/*"
+                        />
+                        <label htmlFor="pfpInput" className="btn btn-danger rounded-circle" style={{
+                            position: "absolute", bottom: 10, right: 10, width: 40, height: 40, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                        }}>✏️</label>
                     </div>
-                    <Input label='Username szerkesztése' type='text' value="" setValue="" placeholder='John Doe' />
-                    <Button text="Mentés" szin="btn btn-danger px-4" />
+
+                    {selectedFile && (
+                        <div className="mt-2">
+                            <Button text="Kép mentése" szin="btn btn-sm btn-outline-light" onClick={handleUploadPfp} />
+                        </div>
+                    )}
+
+                    <div className="mt-4">
+                        <Input
+                            label='Username szerkesztése'
+                            type='text'
+                            value={newUsername}
+                            setValue={setNewUsername}
+                            placeholder={user?.username || 'John Doe'}
+                        />
+                        <Button text="Név mentése" szin="btn btn-danger px-4 mt-2" onClick={handleUpdateUsername} />
+                    </div>
                 </div>
             </div>
         </div>
-
-    )
+    );
 }

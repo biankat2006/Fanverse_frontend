@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import Button from "./Button"
 
-export default function Table({ allUsers, allGames }) {
+export default function Table({ allUsers, allGames,onEditGame,onEditUser, onDeleteUser, onDeleteGame }) {
     const [tableButton, setTableButton] = useState(1)
     const [expandedGames, setExpandedGames] = useState({}); // key: game_id, value: true/false
     const maxLength = 50; // hány karaktert mutatunk alapból
@@ -32,18 +32,20 @@ export default function Table({ allUsers, allGames }) {
                         </thead>
                         <tbody>
                             {allUsers?.map(user => (
-                                <tr className="text-center" key={user.user_id}>
-                                    <td>{user.user_id}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.username}</td>
-                                    <td>{user.pfp}</td>
-                                    <td>{user.role}</td>
-                                    <td className="d-flex justify-content-evenly">
-                                        <Button szin='btn btn-sm btn-warning' text='Szerkesztés' onClick={() => { }} />
-                                        <Button szin='btn btn-sm btn-danger px-4' text='Törlés' onClick={() => { }} />
-                                    </td>
-                                </tr>
-                            ))}
+    <tr className="text-center" key={user.user_id}>
+        <td>{user.user_id}</td>
+        {/* Itt volt a csere: Most az Email kerül az Email oszlop alá */}
+        <td>{user.email}</td> 
+        {/* Most a Username kerül a Username oszlop alá */}
+        <td>{user.username}</td> 
+        <td>{user.pfp}</td>
+        <td>{user.role}</td>
+        <td className="d-flex justify-content-evenly">
+            <Button szin='btn btn-sm btn-warning' text='Szerkesztés' onClick={() => onEditUser(user)} />
+            <Button szin='btn btn-sm btn-danger px-4' text='Törlés' onClick={() => onDeleteUser(user)} />
+        </td>
+    </tr>
+))} 
                         </tbody>
                     </table>
                 </div>
@@ -102,8 +104,8 @@ export default function Table({ allUsers, allGames }) {
                                             }
                                         </td>
                                         <td className="d-flex justify-content-evenly">
-                                            <Button szin='btn btn-sm btn-warning' text='Szerkesztés' onClick={() => { }} />
-                                            <Button szin='btn btn-sm btn-danger px-4' text='Törlés' onClick={() => { }} />
+                                            <Button szin='btn btn-sm btn-warning' text='Szerkesztés' onClick={() => onEditGame(game)} />
+                                            <Button szin='btn btn-sm btn-danger px-4' text='Törlés' onClick={() => onDeleteGame(game)} />
                                         </td>
                                     </tr>
                                 )
