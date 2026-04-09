@@ -27,7 +27,7 @@ export default function Navbar({ user, onLogout }) {
             <div className="container-fluid">
 
                 {/* LOGO */}
-                <button onClick={() => navigate('/')} style={{backgroundColor:'#452458', border:'none'}}>
+                <button onClick={() => navigate('/')} style={{ backgroundColor: '#452458', border: 'none' }}>
                     <Images Class="mt-2" src={logo} altszov="LOGO" height={70} />
                 </button>
 
@@ -37,7 +37,7 @@ export default function Navbar({ user, onLogout }) {
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarContent"
-                    
+
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -56,7 +56,15 @@ export default function Navbar({ user, onLogout }) {
                     </ul>
 
                     {/* KÖZÉP SEARCH */}
-                    <form className="d-flex mx-auto my-2 my-lg-0">
+                    <form
+                        className="d-flex mx-auto my-2 my-lg-0"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            if (!search.trim()) return; // üres keresés elkerülése
+                            // navigálás a keresési oldalra
+                            navigate(`/search/${encodeURIComponent(search.trim())}`);
+                        }}
+                    >
                         <input
                             className="form-control me-2"
                             type="search"
@@ -64,7 +72,7 @@ export default function Navbar({ user, onLogout }) {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
-                        <button className="btn btn-outline-light">
+                        <button className="btn btn-outline-light" type="submit">
                             Search
                         </button>
                     </form>
