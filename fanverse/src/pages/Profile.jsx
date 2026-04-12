@@ -27,19 +27,25 @@ export default function Profile() {
         loadUser();
     }, [navigate]);
 
-const handleUpdateUsername = async () => {
-    if (!newUsername) return alert("Adj meg egy nevet!");
+    const handleUpdateUsername = async () => {
+        if (!newUsername) return alert("Adj meg egy nevet!");
 
-    const response = await editUsername(newUsername);
+        const response = await editUsername(newUsername);
 
-    if (response.error) {
-        alert("Hiba: " + response.error);
-    } else {
-        alert("Név frissítve!");
-        // Ne csak a lokális state frissüljön, hanem újrahívjuk a whoami-t
-        const updatedUser = await whoami();
-        if (!updatedUser.error) setUser(updatedUser);
-    }
+        if (response.error) {
+            alert("Hiba: " + response.error);
+        } else {
+            alert("Név frissítve!");
+            // Ne csak a lokális state frissüljön, hanem újrahívjuk a whoami-t
+            const updatedUser = await whoami();
+            if (!updatedUser.error) setUser(updatedUser);
+        }
+    };
+
+
+    const onLogout = async () => {
+    await logout(); // EZ már az API logout
+    navigate("/login");
 };
 
     const handleUploadPfp = async () => {
@@ -67,17 +73,13 @@ const handleUpdateUsername = async () => {
             setSelectedFile(null);
         }
     };
-    const onLogout = async () => {
-        await logout();
-        navigate("/login");
-    };
-
 
     console.log("USER:", user);
     console.log("PFP:", user?.pfp);
     return (
         <div style={{ backgroundColor: '#452458', minHeight: "100vh" }}>
             <Navbar user={user} onLogout={onLogout} />
+            <h1 className="text-center text-white ">Ha szerkezted a profilképet vagy a felhasználónevet ujra be kell jelentkezned </h1>
             <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
                 <div className="text-center" style={{ width: 450 }}>
 
@@ -110,7 +112,10 @@ const handleUpdateUsername = async () => {
 
                     {selectedFile && (
                         <div className="mt-2">
-                            <Button text="Kép mentése" szin="btn btn-sm btn-outline-light" onClick={handleUploadPfp} />
+                            <Button text="Kép mentése" szin="btn btn-sm btn-outline-light"onClick={() => {
+                            handleUpdateUsername();
+                            onLogout();
+                        }}/>
                         </div>
                     )}
 
@@ -122,7 +127,11 @@ const handleUpdateUsername = async () => {
                             setValue={setNewUsername}
                             placeholder={user?.username || 'John Doe'}
                         />
-                        <Button text="Név mentése" szin="btn btn-danger px-4 mt-2" onClick={handleUpdateUsername} />
+                        <Button text="Név mentése" szin="btn btn-danger px-4 mt-2" onClick={() => {
+                            handleUpdateUsername();
+                            onLogout();
+                        }}
+                        />
                     </div>
                 </div>
             </div>
