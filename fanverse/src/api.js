@@ -258,3 +258,31 @@ export async function searchGames(title) {
         return { error: "Network error" };
     }
 }
+
+// LIKE TOGGLE
+export async function toggleLike(game_id) {
+    const res = await fetch(`${MAIN_BACKEND_URL}/like/${game_id}`, {
+        method: 'POST',
+        credentials: 'include'
+    });
+
+    const data = await res.json();
+    return data;
+}
+
+// LIKE COUNT
+export async function getLikes(game_id) {
+    const res = await fetch(`${MAIN_BACKEND_URL}/likes/${game_id}`);
+    const data = await res.json();
+    return data;
+}
+
+// USER LIKED?
+export async function isLiked(game_id) {
+    const res = await fetch(`${MAIN_BACKEND_URL}/isLiked/${game_id}`, {
+        credentials: 'include'
+    });
+
+    const data = await res.json();
+    return data;
+}

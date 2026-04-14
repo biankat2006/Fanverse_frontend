@@ -12,12 +12,8 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import Navbar from "../components/NavBar";
 import Button from "../components/Button";
-import { logout, whoami, getOneGame } from "../api";
+import { logout, whoami, getOneGame, toggleLike as toggleLikeAPI, getLikes, isLiked } from "../api";
 import Images from "../components/Images";
-
-import banner from '../photos/banner.webp'
-import pfp from '../photos/pfp.jpg'
-import background from '../photos/background.jpg'
 
 import { useParams } from "react-router-dom";
 
@@ -37,10 +33,41 @@ export default function GamePage() {
     const navigate = useNavigate()
 
     const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(0);
 
-    const toggleLike = () => {
-        setLiked(!liked);
+    const [loadingLike, setLoadingLike] = useState(false);
+
+    const handleToggleLike = async () => {
+        if (loadingLike) return;
+        setLoadingLike(true);
+
+        const data = await toggleLikeAPI(game_id);
+
+        if (!data.error) {
+            setLiked(data.liked);
+            setLikeCount(prev => data.liked ? prev + 1 : prev - 1);
+        }
+
+        setLoadingLike(false);
     };
+
+    useEffect(() => {
+        async function loadLikes() {
+            const countData = await getLikes(game_id);
+            if (!countData.error) {
+                setLikeCount(countData.count);
+            }
+
+            if (user) {
+                const likedData = await isLiked(game_id);
+                if (!likedData.error) {
+                    setLiked(likedData.liked);
+                }
+            }
+        }
+
+        loadLikes();
+    }, [game_id, user]);
 
     useEffect(() => {
         async function loadGame() {
@@ -136,10 +163,17 @@ export default function GamePage() {
                             }
                         }}
                     />
-                    <button onClick={toggleLike} style={{ backgroundColor: '#652f80', border: 'none' }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill={liked ? "red" : "currentColor"} class="bi bi-heart" viewBox="0 0 16 16">
+                    <button onClick={handleToggleLike} style={{ backgroundColor: '#652f80', border: 'none' }}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="60"
+                            height="60"
+                            fill={liked ? "red" : "white"}
+                            className="bi bi-heart"
+                            viewBox="0 0 16 16"
+                        >
                             <path d="M8 2.748c-1.676-1.684-4.438-1.684-6.114 0-1.676 1.684-1.676 4.418 0 6.102L8 15l6.114-6.15c1.676-1.684 
-                                1.676-4.418 0-6.102-1.676-1.684-4.438-1.684-6.114 0z" />
+                                    1.676-4.418 0-6.102-1.676-1.684-4.438-1.684-6.114 0z" />
                         </svg>
                     </button>
                 </div>
@@ -170,42 +204,31 @@ export default function GamePage() {
                     </div>
                     <div>
                         <div className="text-white">
-                            <h3>Likes</h3>
+                            <h1 style={{ fontWeight: 'bold' }}>Likes</h1>
                             <div className="column">
-                                <h1>0</h1>
-                                <i class="bi bi-hand-thumbs-up-fill">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill={liked ? "black" : "currentColor"} class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                                        <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
-                                    </svg>
-                                </i>
+                                <h1>{likeCount}</h1>
                             </div>
-                            <div className="row">
-                                <h1>Comments</h1>
-                                <h2>View all</h2>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>
 
             </div>
             <Lightbox
-    open={open}
-    index={index}
-    close={() => setOpen(false)}
-    slides={game.images
-        .filter(img => img)
-        .map(img => ({
-            src: `http://127.0.0.1:4000/kepek/${img}`
-        }))
-    }
-    plugins={[Thumbnails, Zoom]}
-    zoom={{
-        maxZoomPixelRatio: 3,
-        scrollToZoom: true
-    }}
-/>
+                open={open}
+                index={index}
+                close={() => setOpen(false)}
+                slides={game.images
+                    .filter(img => img)
+                    .map(img => ({
+                        src: `http://127.0.0.1:4000/kepek/${img}`
+                    }))
+                }
+                plugins={[Thumbnails, Zoom]}
+                zoom={{
+                    maxZoomPixelRatio: 3,
+                    scrollToZoom: true
+                }}
+            />
         </div>
 
     )
