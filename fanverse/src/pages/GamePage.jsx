@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate, } from 'react-router-dom'
 import "../cssfolder/mainPage.css"
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -156,7 +157,7 @@ export default function GamePage() {
                                     className="image img-fluid"
                                     src={`http://127.0.0.1:4000/kepek/${image}`}
                                     alt={`Game ${i + 1}`}
-                                    style={{ width: 150, height: 150, objectFit: "cover", cursor: "pointer" }}
+                                    style={{ width: 300, height: 150, objectFit: "cover", cursor: "pointer" }}
                                     onClick={() => { setIndex(i); setOpen(true); }}
                                 />
                             ))}
@@ -190,15 +191,21 @@ export default function GamePage() {
 
             </div>
             <Lightbox
-                open={open}
-                index={index}
-                close={() => setOpen(false)}
-                slides={game.images
-                    .filter(img => img)  // csak az üres string nélküli, létező képek
-                    .map(img => ({ src: `http://127.0.0.1:4000/kepek/${img}` }))
-                }
-                plugins={[Thumbnails]}
-            />
+    open={open}
+    index={index}
+    close={() => setOpen(false)}
+    slides={game.images
+        .filter(img => img)
+        .map(img => ({
+            src: `http://127.0.0.1:4000/kepek/${img}`
+        }))
+    }
+    plugins={[Thumbnails, Zoom]}
+    zoom={{
+        maxZoomPixelRatio: 3,
+        scrollToZoom: true
+    }}
+/>
         </div>
 
     )
