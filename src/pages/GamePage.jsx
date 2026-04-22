@@ -91,7 +91,7 @@ export default function GamePage() {
                     
                     <Images
                         Class="w-100 img-fluid"
-                        src={`/bigpicture/${game.images[0]}`}
+                        src={`https://nodejs301.dszcbaross.edu.hu/bigpicture/${game.images[0]}`}
                         altszov="Banner" 
                         style={{ maxHeight: '400px', objectFit: 'cover' }}
                     />
@@ -107,7 +107,7 @@ export default function GamePage() {
                         <div className="col-12 col-md d-flex align-items-center justify-content-center justify-content-md-start gap-3">
                             <Images
                                 Class="rounded-circle border border-2 border-white shadow-sm flex-shrink-0"
-                                src={`/creator/${game.creator_pfp}`}
+                                src={`https://nodejs301.dszcbaross.edu.hu/creator/${game.creator_pfp}`}
                                 altszov="Creator"
                                 width={60}
                                 height={60}
@@ -130,7 +130,7 @@ export default function GamePage() {
                                         return;
                                     }
                                     try {
-                                        const response = await fetch(`/file/${encodeURIComponent(game.file)}`, {
+                                        const response = await fetch(`https://nodejs301.dszcbaross.edu.hu/file/${encodeURIComponent(game.file)}`, {
                                             method: 'GET',
                                         });
                                         if (!response.ok) {
@@ -180,7 +180,7 @@ export default function GamePage() {
                                     <div key={i} className={`carousel-item ${i === 0 ? 'active' : ''}`}>
                                         <img
                                             className="d-block w-100 rounded shadow"
-                                            src={`/kepek/${image}`}
+                                            src={`https://nodejs301.dszcbaross.edu.hu/kepek/${image}`}
                                             alt={`Screenshot ${i + 1}`}
                                             style={{ height: '250px', objectFit: "cover" }}
                                             onClick={() => { setIndex(i + 1); setOpen(true); }}
@@ -208,7 +208,7 @@ export default function GamePage() {
                             <div key={i} className="col-sm-4 col-md-3">
                                 <img
                                     className="img-fluid rounded shadow-sm w-100 image-zoom"
-                                    src={`/kepek/${image}`}
+                                    src={`https://nodejs301.dszcbaross.edu.hu/kepek/${image}`}
                                     alt={`Screenshot ${i + 1}`}
                                     style={{ height: '160px', objectFit: "cover", cursor: "pointer" }}
                                     onClick={() => { setIndex(i + 1); setOpen(true); }}
@@ -241,7 +241,7 @@ export default function GamePage() {
                 open={open}
                 index={index}
                 close={() => setOpen(false)}
-                slides={game.images.filter(img => img).map(img => ({ src: `/kepek/${img}` }))}
+                slides={game.images.filter(img => img).map(img => ({ src: `https://nodejs301.dszcbaross.edu.hu/kepek/${img}` }))}
                 plugins={[Thumbnails, Zoom]}
             />
         </div>
