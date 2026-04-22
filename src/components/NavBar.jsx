@@ -48,10 +48,10 @@ export default function Navbar({ user, onLogout }) {
                     {/* BAL OLDAL */}
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <span className="nav-link szin">Fanverse</span>
+                            <span className=" szin">Fanverse</span>
                         </li>
                         <li className="nav-item">
-                            <span className="nav-link  nav-link szin2">Central</span>
+                            <span className=" szin2">Central</span>
                         </li>
                     </ul>
 

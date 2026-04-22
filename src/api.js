@@ -1,5 +1,5 @@
-const BACKEND_URL = '/users' 
-const MAIN_BACKEND_URL = '/main'
+const BACKEND_URL = '/api/users' 
+const MAIN_BACKEND_URL = '/api/main'
 
 export async function register(username, psw,email ) {
     const res = await fetch(`${BACKEND_URL}/register`, {

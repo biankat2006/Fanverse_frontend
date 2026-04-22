@@ -12,41 +12,11 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      '/users': {
+      '/api': {
         target: 'https://nodejs301.dszcbaross.edu.hu',
         changeOrigin: true,
         secure: false
-      },
-      '/main': {
-        target: 'https://nodejs301.dszcbaross.edu.hu',
-        changeOrigin: true,
-        secure: false
-      },
-      '/file': {
-        target: 'https://nodejs301.dszcbaross.edu.hu',
-        changeOrigin: true,
-        secure: false
-      },
-      '/bigpicture': {
-        target: 'https://nodejs301.dszcbaross.edu.hu',
-        changeOrigin: true,
-        secure: false
-      },
-      '/creator': {
-        target: 'https://nodejs301.dszcbaross.edu.hu',
-        changeOrigin: true,
-        secure: false
-      },
-      '/kepek': {
-        target: 'https://nodejs301.dszcbaross.edu.hu',
-        changeOrigin: true,
-        secure: false
-      },
-      '/user_pfp': {
-        target: 'https://nodejs301.dszcbaross.edu.hu',
-        changeOrigin: true,
-        secure: false
-      },
+      }
     }
   }
 })
