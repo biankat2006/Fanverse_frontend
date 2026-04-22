@@ -115,8 +115,32 @@ export default function GamePage() {
                         <div className="col-12 col-md-auto d-flex justify-content-center align-items-center gap-3">
                             <Button
                                 text="Download"
-                                szin="btn btn-light fw-bold px-4 py-2"
-                                onClick={async () => { /* letöltés logika változatlan */ }}
+                                szin="btn btn-dark px-5"
+                                onClick={async () => {
+                                    if (!game.file || game.file === 'none') {
+                                        alert('A játék fájl nem elérhető.');
+                                        return;
+                                    }
+                                    try {
+                                        const response = await fetch(`/file/${encodeURIComponent(game.file)}`, {
+                                            method: 'GET',
+                                        });
+                                        if (!response.ok) {
+                                            throw new Error('A fájl nem található a szerveren.');
+                                        }
+                                        const blob = await response.blob();
+                                        const url = window.URL.createObjectURL(blob);
+                                        const link = document.createElement('a');
+                                        link.href = url;
+                                        link.download = game.file;
+                                        document.body.appendChild(link);
+                                        link.click();
+                                        document.body.removeChild(link);
+                                        window.URL.revokeObjectURL(url);
+                                    } catch (error) {
+                                        alert(error.message);
+                                    }
+                                }}
                             />
                             <button onClick={handleToggleLike} className="p-0 bg-transparent border-0 transition-scale">
                                 <svg
