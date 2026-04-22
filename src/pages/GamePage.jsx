@@ -92,7 +92,7 @@ export default function GamePage() {
                     <Images
                         Class="w-100 img-fluid"
                         src={`/bigpicture/${game.images[0]}`}
-                        altszov="Banner"
+                        altszov="Banner" 
                         style={{ maxHeight: '400px', objectFit: 'cover' }}
                     />
                 )}
