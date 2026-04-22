@@ -1,0 +1,52 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+
+
+  [[redirects]]
+  from = "/users/*"
+  to = "https://nodejs301.dszcbaross.edu.hu/users/:splat"
+  status = 200
+  force = true
+
+  [[redirects]]
+  from = "/main/*"
+  to = "https://nodejs301.dszcbaross.edu.hu/main/:splat"
+  status = 200
+  force = true
+
+    [[redirects]]
+  from = "/file/*"
+  to = "https://nodejs301.dszcbaross.edu.hu/file/:splat"
+  status = 200
+  force = true
+
+    [[redirects]]
+  from = "/bigpicture/*"
+  to = "https://nodejs301.dszcbaross.edu.hu/bigpicture/:splat"
+  status = 200
+  force = true
+
+    [[redirects]]
+  from = "/creator/*"
+  to = "https://nodejs301.dszcbaross.edu.hu/creator/:splat"
+  status = 200
+  force = true
+
+    [[redirects]]
+  from = "/kepek/*"
+  to = "https://nodejs301.dszcbaross.edu.hu/kepek/:splat"
+  status = 200
+  force = true
+
+    [[redirects]]
+  from = "/user_pfp/*"
+  to = "https://nodejs301.dszcbaross.edu.hu/user_pfp/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
