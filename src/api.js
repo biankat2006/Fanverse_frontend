@@ -1,4 +1,4 @@
-const BACKEND_URL = '/users'
+const BACKEND_URL = '/users' 
 const MAIN_BACKEND_URL = '/main'
 
 export async function register(username, psw,email ) {
