@@ -51,13 +51,8 @@ export default function GamePage() {
         async function loadGame() {
             const data = await getOneGame(game_id);
             if (data && !data.error) {
-                // Itt történik a varázslat:
-                const formattedData = {
-                    ...data,
-                    // Ha a data.images string, szétvágjuk a vesszőknél, ha üres, üres tömböt adunk
-                    images: typeof data.images === 'string' ? data.images.split(',') : []
-                };
-                setGame(formattedData);
+                // Ez az eredeti, módosítás nélküli verzió:
+                setGame(data);
             }
         }
         loadGame();
