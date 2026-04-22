@@ -9,7 +9,7 @@ export default function GameCard({ title, creator, banner_pic, creator_pfp }) {
         {/* Banner a szerverről */}
         <Images
           Class="card-img-top img img-fluid img-thumbnail rounded-5"
-          src={`http://127.0.0.1:4000/updates/${banner_pic}`}
+          src={`https://nodejs301.dszcbaross.edu.hu/updates/${banner_pic}`}
           altszov="Banner pic"
         />
 
@@ -19,7 +19,7 @@ export default function GameCard({ title, creator, banner_pic, creator_pfp }) {
           <div className="d-flex align-items-center">
             {/* Creator profilkép a szerverről */}
             <Images
-              src={`http://localhost:4000/creator/${creator_pfp}`}
+              src={`https://nodejs301.dszcbaross.edu.hu/creator/${creator_pfp}`}
               altszov="creator pfp"
               Class="ps me-3 rounded-5"
             />
