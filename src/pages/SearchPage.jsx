@@ -17,6 +17,7 @@ export default function SearchPage() {
     const gamesPerPage = 15;
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+    console.log(indexOfFirstGame, indexOfLastGame);
     const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
 
     // User betöltése
@@ -56,7 +57,7 @@ export default function SearchPage() {
     return (
         <div style={{ backgroundColor: '#452458' }}>
             <Navbar user={user} onLogout={onLogout} />
-
+            {console.log(currentGames)}
             <div className="container" style={{ minHeight: '90vh', backgroundColor: '#452458' }}>
                 <div className="container rounded-5 p-5" style={{ backgroundColor: '#652f80', minHeight: '95%' }}>
                     
@@ -65,6 +66,7 @@ export default function SearchPage() {
                     <div className="rounded-5 p-5 row gy-3">
                         {currentGames.length > 0 ? (
                             currentGames.map((game) => (
+                                
                                 <div
                                     key={game.game_id}
                                     className="col-md-4"
