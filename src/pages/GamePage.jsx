@@ -47,11 +47,18 @@ export default function GamePage() {
         }
         loadLikes();
     }, [game_id, user]);
-
     useEffect(() => {
         async function loadGame() {
             const data = await getOneGame(game_id);
-            if (!data.error) setGame(data);
+            if (data && !data.error) {
+                // Itt történik a varázslat:
+                const formattedData = {
+                    ...data,
+                    // Ha a data.images string, szétvágjuk a vesszőknél, ha üres, üres tömböt adunk
+                    images: typeof data.images === 'string' ? data.images.split(',') : []
+                };
+                setGame(formattedData);
+            }
         }
         loadGame();
     }, [game_id]);
@@ -81,6 +88,7 @@ export default function GamePage() {
             {/* Banner kép */}
             <div className="container-fluid p-0">
                 {game.images.length > 0 && (
+                    
                     <Images
                         Class="w-100 img-fluid"
                         src={`/bigpicture/${game.images[0]}`}
