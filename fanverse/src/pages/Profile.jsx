@@ -90,7 +90,7 @@ export default function Profile() {
                                 selectedFile
                                     ? URL.createObjectURL(selectedFile)
                                     : (user?.pfp && user.pfp !== "nincs"
-                                        ? `http://localhost:4000/user_pfp/${user.pfp}`
+                                        ? `/user_pfp/${user.pfp}`
                                         : pfpDefault)
                             }
                             altszov="Profile Picture"

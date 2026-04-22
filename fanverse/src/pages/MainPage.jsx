@@ -69,7 +69,7 @@ export default function MainPage() {
                 {/* {errorUser && <div className="alert alert-danger text-center my-2">{errorUser}</div>} */}
             </div>
 
-            <div className="container" style={{ height: 2050, backgroundColor: '#452458' }}>
+            <div className="container mobileFull" style={{ height: 2050, backgroundColor: '#452458' }}>
                 <div className="container rounded-5 p-5" style={{ backgroundColor: '#652f80', height: '95%' }}>
                     <div className="" style={{ backgroundColor: '#652f80' }}>
                         <Button text="all" szin="btn btn-danger px-4" />
