@@ -44,9 +44,9 @@ export default function Profile() {
 
 
     const onLogout = async () => {
-    await logout(); // EZ már az API logout
-    navigate("/login");
-};
+        await logout(); // EZ már az API logout
+        navigate("/login");
+    };
 
     const handleUploadPfp = async () => {
         if (!selectedFile) return alert("Válassz ki egy képet!");
@@ -79,7 +79,7 @@ export default function Profile() {
     return (
         <div style={{ backgroundColor: '#452458', minHeight: "100vh" }}>
             <Navbar user={user} onLogout={onLogout} />
-            <h1 className="text-center text-white ">Ha szerkezted a profilképet vagy a felhasználónevet ujra be kell jelentkezned </h1>
+            <h1 className="text-center text-white ">Ha szerkeszted a profilképet vagy a felhasználónevet újra be kell jelentkezned </h1>
             <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
                 <div className="text-center" style={{ width: 450 }}>
 
@@ -90,7 +90,7 @@ export default function Profile() {
                                 selectedFile
                                     ? URL.createObjectURL(selectedFile)
                                     : (user?.pfp && user.pfp !== "nincs"
-                                        ? `/user_pfp/${user.pfp}`
+                                        ? `https://nodejs301.dszcbaross.edu.hu/user_pfp/${user.pfp}`
                                         : pfpDefault)
                             }
                             altszov="Profile Picture"
@@ -112,10 +112,14 @@ export default function Profile() {
 
                     {selectedFile && (
                         <div className="mt-2">
-                            <Button text="Kép mentése" szin="btn btn-sm btn-outline-light"onClick={() => {
-                            handleUpdateUsername();
-                            onLogout();
-                        }}/>
+                            <Button
+                                text="Kép mentése"
+                                szin="btn btn-sm btn-outline-light"
+                                onClick={async () => {
+                                    await handleUploadPfp(); // A név frissítése helyett a KÉP feltöltést hívjuk
+                                    onLogout();              // Utána kiléptetünk
+                                }}
+                            />
                         </div>
                     )}
 

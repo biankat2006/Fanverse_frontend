@@ -41,15 +41,26 @@ label {
         margin: 0px !important;
     }
 
-     .phone2 {
-       padding: 0px !important;
-       margin-top: 20px;
-       /* width: 300px !important; */
-       max-width: 300px !important;
-       width: 100% !important;
-        height: 0px !important;
-       
+     .phone4 {
+        height: fit-content !important; 
+        min-height: 480px !important; /* Ez elég kell legyen 4 inputnak + gombnak */
         
+        /* Fontos: a paddinget NE vedd le 0-ra, mert rásimul a szöveg a szélére */
+        padding: 30px 20px !important; 
+        
+        margin-top: 20px;
+        margin-bottom: 20px;
+        
+        /* A szélesség maradjon fixált mobilon */
+        width: 90% !important;
+        max-width: 320px !important;
+        
+        /* Ez segít, hogy a lila div középen maradjon */
+        margin-left: auto;
+        margin-right: auto;
+        
+        /* Kényszerítjük, hogy ne lógjon ki semmi */
+        overflow: visible !important;
     } 
 
     

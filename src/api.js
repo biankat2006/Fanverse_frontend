@@ -1,5 +1,5 @@
-const BACKEND_URL = '/api/users' 
-const MAIN_BACKEND_URL = '/api/main'
+const BACKEND_URL = '/users' 
+const MAIN_BACKEND_URL = '/main'
 
 export async function register(username, psw,email ) {
     const res = await fetch(`${BACKEND_URL}/register`, {
@@ -286,3 +286,12 @@ export async function isLiked(game_id) {
     const data = await res.json();
     return data;
 }
+
+export async function getMostLikedGames() {
+    const res = await fetch(`${MAIN_BACKEND_URL}/mostLiked`, {
+        credentials: 'include'
+    });
+
+    const data = await res.json();
+    return data;
+}0

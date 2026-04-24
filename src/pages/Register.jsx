@@ -71,8 +71,8 @@ export default function Register() {
 
               {/* regisztráció*/}
 
-              <div className="col-12 col-md-5 rounded-5 p-3 phone2" style={{ backgroundColor: '#452458' }}>
-                <div className="custom-card justify-content-center align-items-center">
+              <div className="col-12 col-md-5 rounded-5 p-3 phone4 " style={{ backgroundColor: '#452458' }}>
+                <div className="custom-card justify-content-center align-items-center ">
                   <Input label='E-mail' type='email' value={email} setValue={setEmail} placeholder='example@example.com' />
                   <Input label='Username' type='text' value={username} setValue={setUsername} placeholder='John Doe' />
                   <Input label='Password' type='password' value={psw} setValue={setPsw} placeholder='******' />
