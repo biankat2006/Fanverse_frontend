@@ -28,7 +28,7 @@ export default function Navbar({ user, onLogout }) {
 
                 {/* LOGO */}
                 <button onClick={() => navigate('/')} style={{ backgroundColor: '#452458', border: 'none' }}>
-                    <Images Class="mt-2" src={logo} altszov="LOGO" height={70} />
+                    <Images Class="mt-2" src={logo} altszov="LOGO" height={90} />
                 </button>
 
                 {/* HAMBURGER */}

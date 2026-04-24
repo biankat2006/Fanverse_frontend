@@ -9,7 +9,50 @@
 }
 
 @media (max-width: 768px) {
-    .mobileFull{
-        height: 4600px !important;
-    }
+    .mobileFull {
+        height: auto !important;
+        padding: 10px;
+      }
+    
+      .mobileContainer {
+        padding: 15px !important;
+        border-radius: 20px !important;
+      }
+    
+      .mobileButtons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    
+      .mobileButtons button {
+        width: 100%;
+      }
+    
+      .mobileGrid {
+        padding: 10px !important;
+      }
+    
+      .mobileGrid .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    
+      .pagination {
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+    
+      .page-link {
+        padding: 6px 10px;
+        font-size: 14px;
+      }
+      .mobileGrid {
+        gap: 15px;
+      }
+    
+      .mobileGrid > div {
+        margin-bottom: 10px;
+      }
+    
 }

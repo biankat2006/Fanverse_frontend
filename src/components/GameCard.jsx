@@ -1,10 +1,10 @@
 import Images from "./Images"
-
+import "../cssfolder/mainPage.css"
 
 
 export default function GameCard({ title, creator, banner_pic, creator_pfp }) {
     return (
-        <div className="h-100 w-100 border-0 rounded-4 overflow-hidden">
+        <div className="h-100 w-100 mobilNezet border-0 rounded-4 overflow-hidden">
       <div className="card rounded-5" style={{ background: "#452458" }}>
         {/* Banner a szerverről */}
         <Images
