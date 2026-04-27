@@ -1,18 +1,141 @@
-# React + Vite
+# Fanverse Central frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## A projektről:
+```markdown
+A Fanverse Central egy modern, közösségorientált platform, amelyet Timári Bianka és Fülöp Attila Ákos készített el. Az oldal elsődleges célja, hogy központi találkozóhelyet biztosítson a rajongói alkotások, független fejlesztések és a kreatív közösségek számára.
 
-Currently, two official plugins are available:
+**Az inspiráció:**
+Az oldal fejlesztése során a készítők a népszerű Game Jolt platformot vették alapul. Ez az inspiráció visszaköszön a felhasználóbarát felületben, a tartalomközpontú felépítésben és abban a szemléletmódban, amely a független alkotók támogatását helyezi a középpontba.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A Fanverse Central nem csupán egy weboldal, hanem egy digitális otthon mindazok számára, akik szeretnének elmerülni a rajongói univerzumok világában, legyen szó játékról, művészetről vagy közösségi élményekről.
 
-## React Compiler
+Az oldalt itt lehet megtekinteni: [Fanverse Central](https://fanversecentral.netlify.app/)
+```
+---
+## Készítette:
+- Fülöp Attila Ákos(Backend, SQL adatbázis, Frontend)
+- Timári Bianka(Frontend, SQL adatbázis, Backend)
+---
+## Projekt szerkezet
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+```markdown
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets
+│       └──  react.svg
+│   ├── components
+│       ├── Button.jsx
+│       ├── GameCard.jsx
+│       ├── Images.jsx
+│       ├── Input.jsx
+│       ├── NavBar.jsx
+│       └── Table.jsx
+│   ├── context
+│       └── AuthContext.jsx
+│   ├── cssfolder
+│       ├── admin.css
+│       ├── gamePage.css
+│       ├── login.css
+│       ├── mainPage.css
+│       ├── navbar.css
+│       └── register.css
+│   ├── pages
+│       ├── Admin.jsx
+│       ├── GamePage.jsx
+│       ├── Login.jsx
+│       ├── MainPage.jsx
+│       ├── Profile.jsx
+│       ├── Register.jsx
+│       └── SearchPage.jsx
+│   ├── photos(ezt a mappát át vette a backend mert ezzel teszteltünk   hogy  megjelennek e a képek)
+│       ├── background.jpg
+│       ├── banner.webp
+│       ├── fnafGame.webp
+│       ├── logo.png
+│       └── pfp.jpg
+│   ├── api.js
+│   └── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── netlify.toml
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
+```
+---
 
-Note: This will impact Vite dev & build performances.
+## Design (Figma)
 
-## Expanding the ESLint configuration
+A figma terv gépes nézete:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Figma terv gépes nézete](https://www.pasteboard.co/vRKbOPLfzfTX.png)
+
+A figma terv mobilos nézete:
+
+![Figma terv mobilos nézete](https://www.pasteboard.co/BxkSw5PFx3dw.png)
+
+A figma terv: [Figma terv](https://www.figma.com/design/BbSlQu3Q6b5zKCKN3D3yWq/Untitled?node-id=0-1&p=f&t=Qby5mh8YeWMNbpI0-0)
+
+---
+
+Ez az oldal elérése: [Fanverse Central](https://fanversecentral.netlify.app)
+
+### Main page
+
+Itt látható az összes játék.
+Ide fog bedobni az oldal elsőnek
+
+![Main page](https://www.pasteboard.co/5By5Vz6_ah4q.png)
+
+### Bejelentkezés/Regisztráció
+
+Itt be lehet lépni vagy csinálni egy új fiókot ha nincs.
+
+Bejelentkezés:
+![Login](https://www.pasteboard.co/NfxQ7jwlzVRP.png)
+
+Regisztráció:
+![Register](https://www.image2url.com/r2/default/images/1777289404536-4789b710-a8fe-40e4-8815-487983a636a0.png)
+
+### Game page
+
+Itt lehet letölteni, szivezni(like) a játékot ha be vagy jelentkezve.
+
+![game page teteje](https://snipboard.io/CcZDTx.jpg)
+![game page alja](https://snipboard.io/iZ05Rv.jpg)
+
+### Profile page
+
+Itt a felhasználó meg tudja változtatni a profil képét és a felhasználó nevét és utánna be kell újra jelentkeznie
+
+![profil oldal](https://snipboard.io/BYNbDJ.jpg)
+
+A kép mentése gomb akkor jelenik meg ha más profil képet is raktak be:
+
+![profil kép szerk.](https://snipboard.io/t4hAFC.jpg)
+
+### Kereső panel
+
+A felhasználó rá tud keresni játékokra is
+
+![keresés](https://snipboard.io/ARW0T9.jpg)
+
+### Admin panel
+
+Itt az adminok tudják szerkeszteni az adott felhasználó vagy játékok egyes adatait ha az nem meg felelő
+
+![Felhasználók](https://snipboard.io/1cXJbl.jpg)
+![Játékok](https://snipboard.io/fOFXGQ.jpg)
+---
+## Teszt adatok
+### Teszt admin
+email: bianka@bianka.com
+username: bianka2006_
+
+### Teszt felhasználó
+email: tesztuser@teszt.com
+username: tesztuser_
+
