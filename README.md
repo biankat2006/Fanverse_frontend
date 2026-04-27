@@ -4,7 +4,7 @@
 ```markdown
 A Fanverse Central egy modern, közösségorientált platform, amelyet Timári Bianka és Fülöp Attila Ákos készített el. Az oldal elsődleges célja, hogy központi találkozóhelyet biztosítson a rajongói alkotások, független fejlesztések és a kreatív közösségek számára.
 
-**Az inspiráció:**
+Az inspiráció:
 Az oldal fejlesztése során a készítők a népszerű Game Jolt platformot vették alapul. Ez az inspiráció visszaköszön a felhasználóbarát felületben, a tartalomközpontú felépítésben és abban a szemléletmódban, amely a független alkotók támogatását helyezi a középpontba.
 
 A Fanverse Central nem csupán egy weboldal, hanem egy digitális otthon mindazok számára, akik szeretnének elmerülni a rajongói univerzumok világában, legyen szó játékról, művészetről vagy közösségi élményekről.
@@ -71,11 +71,11 @@ Az oldalt itt lehet megtekinteni: [Fanverse Central](https://fanversecentral.net
 
 A figma terv gépes nézete:
 
-![Figma terv gépes nézete](https://www.pasteboard.co/vRKbOPLfzfTX.png)
+![Figma terv gépes nézete](https://snipboard.io/8AzWTd.jpg)
 
 A figma terv mobilos nézete:
 
-![Figma terv mobilos nézete](https://www.pasteboard.co/BxkSw5PFx3dw.png)
+![Figma terv mobilos nézete](https://snipboard.io/Ay1pUx.jpg)
 
 A figma terv: [Figma terv](https://www.figma.com/design/BbSlQu3Q6b5zKCKN3D3yWq/Untitled?node-id=0-1&p=f&t=Qby5mh8YeWMNbpI0-0)
 
@@ -88,17 +88,17 @@ Ez az oldal elérése: [Fanverse Central](https://fanversecentral.netlify.app)
 Itt látható az összes játék.
 Ide fog bedobni az oldal elsőnek
 
-![Main page](https://www.pasteboard.co/5By5Vz6_ah4q.png)
+![Main page](https://snipboard.io/EHplwf.jpg)
 
 ### Bejelentkezés/Regisztráció
 
 Itt be lehet lépni vagy csinálni egy új fiókot ha nincs.
 
 Bejelentkezés:
-![Login](https://www.pasteboard.co/NfxQ7jwlzVRP.png)
+![Login](https://snipboard.io/B83hmX.jpg)
 
 Regisztráció:
-![Register](https://www.image2url.com/r2/default/images/1777289404536-4789b710-a8fe-40e4-8815-487983a636a0.png)
+![Register](https://snipboard.io/SyP45s.jpg)
 
 ### Game page
 
