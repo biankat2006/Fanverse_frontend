@@ -8,8 +8,6 @@ Az inspiráció:
 Az oldal fejlesztése során a készítők a népszerű Game Jolt platformot vették alapul. Ez az inspiráció visszaköszön a felhasználóbarát felületben, a tartalomközpontú felépítésben és abban a szemléletmódban, amely a független alkotók támogatását helyezi a középpontba.
 
 A Fanverse Central nem csupán egy weboldal, hanem egy digitális otthon mindazok számára, akik szeretnének elmerülni a rajongói univerzumok világában, legyen szó játékról, művészetről vagy közösségi élményekről.
-
-Az oldalt itt lehet megtekinteni: [Fanverse Central](https://fanversecentral.netlify.app/)
 ```
 ---
 ## Készítette:
@@ -81,7 +79,7 @@ A figma terv: [Figma terv](https://www.figma.com/design/BbSlQu3Q6b5zKCKN3D3yWq/U
 
 ---
 
-Ez az oldal elérése: [Fanverse Central](https://fanversecentral.netlify.app)
+Az oldalt itt lehet megtekinteni: [Fanverse Central](https://fanversecentral.netlify.app)
 
 ### Main page
 
